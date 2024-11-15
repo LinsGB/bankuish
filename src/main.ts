@@ -25,7 +25,6 @@ async function bootstrap() {
     fs.readFileSync(firebaseKeyFilePath).toString(),
   );
   if (firebaseAdmin.apps.length === 0) {
-    console.log('Initialize Firebase Application.');
     firebaseAdmin.initializeApp({
       credential: firebaseAdmin.credential.cert(firebaseServiceAccount),
     });

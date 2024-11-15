@@ -28,14 +28,13 @@ describe('Course (e2e)', () => {
 
     const firebaseKeyFilePath = join(
       __dirname,
-      '../bankuish-d02fc-firebase-adminsdk-k55j9-ac873b5177.json',
+      '../../bankuish-d02fc-firebase-adminsdk-k55j9-ac873b5177.json',
     );
 
     const firebaseServiceAccount /*: ServiceAccount*/ = JSON.parse(
       readFileSync(firebaseKeyFilePath).toString(),
     );
     if (firebaseAdmin.apps.length === 0) {
-      console.log('Initialize Firebase Application.');
       firebaseAdmin.initializeApp({
         credential: firebaseAdmin.credential.cert(firebaseServiceAccount),
       });

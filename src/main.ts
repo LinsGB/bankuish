@@ -13,14 +13,23 @@ async function bootstrap() {
       'The API details for the User Authentication Demo application using Firebase in the NestJS backend.',
     )
     .setVersion('1.0')
-    .addTag('Authentication')
-    .addBearerAuth()
+    .addBearerAuth(
+      {
+        description: `[just text field] Please enter token in following format: Bearer <JWT>`,
+        name: 'Authorization',
+        bearerFormat: 'Bearer',
+        scheme: 'Bearer',
+        type: 'http',
+        in: 'Header',
+      },
+      'access-token',
+    )
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  const firebaseKeyFilePath =
-    './bankuish-d02fc-firebase-adminsdk-k55j9-ac873b5177.json';
+  const firebaseKeyFilePath = './firebase-file.json';
   const firebaseServiceAccount /*: ServiceAccount*/ = JSON.parse(
     fs.readFileSync(firebaseKeyFilePath).toString(),
   );

@@ -6,9 +6,9 @@ COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
-
 # Bundle app source
 COPY . .
+RUN npx prisma generate
 
 # Copy the .env and .env.development files
 COPY .env ./

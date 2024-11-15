@@ -1,73 +1,90 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Tec-Test
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+> In the project, NestJS, Prisma, Postgres, Docker, and Firebase were used.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### What I accomplished and what I intended to do if I had more time.
 
-## Description
+The project was completed within the time I had available.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [x] Solve the target problem of the techinical test.
+- [x] Criate a good documentation
+- [x] Create docker file
+- [ ] Handle more errors.
+- [ ] Put 100% of coverage on the project
+- [ ] Create E2E without using diferent DB.
 
-## Installation
+## 💻 Prerequisites
 
-```bash
-$ npm install
-```
+Before starting, ensure you meet the following requirements:
 
-## Running the app
+- You have installed `<docker>`.
+- The project was developed on a Linux machine, so it’s best to run it on `<Linux>`.
 
-```bash
-# development
-$ npm run start
+#### Copy .env.example
+Copy the .env.example and create a .env file
 
-# watch mode
-$ npm run start:dev
+#### Download Firebase File
+In the Firebase project settings, navigate to **Service Accounts**. The URL should look like:  
+`https://console.firebase.google.com/project/{YOUR_PROJECT}/settings/serviceaccounts/adminsdk`  
 
-# production mode
-$ npm run start:prod
-```
+Click on **Generate new private key**, save the JSON file to the root folder of the project, and rename it to `firebase-file.json`.
 
-## Test
+#### Get Firebase API Key
+Again, in the Firebase project settings, navigate to **General** and retrieve your API Key. Add this API Key to your `.env` file.
+
+---
+
+## 🚀 Running the Project
+
+To run the `micro-service-node`, follow these steps:
+
+### Linux
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose up --build
+RUN THE MIGRATIONS: npm run migration
+ACCESS the swagger at http://localhost:3000/api
 ```
 
-## Support
+---
+## Explanation
+The aplication has a endpoint for create a account on firbase and other to login, you should use then to get your token and use on the other requests
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## ☕ Helper
 
-## Stay in touch
+#### Access PG Admin:
+```bash
+Access PG Admin: http://localhost:5050
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Login with the following credentials:
+    Email: admin@admin.com
+    Password: pgadmin4
 
-## License
+To add a new 'server': Click the 'Add New Server' button.
+In the 'Connection' tab, update the settings:
+    'Host name/address': db
+    'Username': postgres
+    'Password': postgres
+Save the settings.
+```
 
-Nest is [MIT licensed](LICENSE).
+#### Run Migrations:
+```bash
+Update your `.env` file so the `DATABASE_URL` variable has the value:
+    "postgresql://postgres:postgres@localhost:5433/postgres"
+
+Run the following command:
+    npm run migration
+```
+
+### Access Swagger:
+```bash
+Access the URL: http://localhost:3000/api
+```
+
+### Access PG Admin:
+```bash
+Access the URL: http://localhost:5050
+    Email: admin@admin.com
+    Password: pgadmin4
+```

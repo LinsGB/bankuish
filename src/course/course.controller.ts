@@ -10,8 +10,10 @@ import { CreateScheduleDto } from './course.dto';
 import { UserService } from '../user/user.service';
 import { AuthGuard } from '../guard/auth.guard';
 import { CourseService } from './course.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('course')
+@ApiBearerAuth('access-token')
 export class CourseController {
   constructor(
     private readonly service: CourseService,

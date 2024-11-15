@@ -28,7 +28,7 @@ describe('Course (e2e)', () => {
 
     const firebaseKeyFilePath = join(
       __dirname,
-      '../../bankuish-d02fc-firebase-adminsdk-k55j9-ac873b5177.json',
+      '../../firebase-file.json',
     );
 
     const firebaseServiceAccount /*: ServiceAccount*/ = JSON.parse(

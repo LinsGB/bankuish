@@ -27,8 +27,11 @@ export class CourseService {
         },
       });
 
-      scheduleCourses.push({ [schedule.name]: courses });
+      scheduleCourses.push({
+        [schedule.name]: courses.map((course) => course.title),
+      });
     }
+
     return scheduleCourses;
   }
 
@@ -52,6 +55,7 @@ export class CourseService {
         },
       });
     }
+
     return schedule;
   }
 }

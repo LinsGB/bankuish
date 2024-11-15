@@ -67,6 +67,24 @@ export class UserService {
     }
   }
 
+  async getUserId(req) {
+    try {
+      const [bearer, token] = req.headers['authorization'].split(' ');
+      const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
+      console.log('Decoded Token:', decodedToken);
+      return decodedToken.uid;
+    } catch (error) {
+      if (error.code === 'auth/id-token-expired') {
+        console.error('Token has expired.');
+      } else if (error.code === 'auth/invalid-id-token') {
+        console.error('Invalid ID token provided.');
+      } else {
+        console.error('Error verifying token:', error);
+      }
+      return null;
+    }
+  }
+
   private async signInWithEmailAndPassword(email: string, password: string) {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.APIKEY}`;
     console.log('URL =>', url);

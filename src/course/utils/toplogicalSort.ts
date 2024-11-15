@@ -1,35 +1,17 @@
+import { CourseDto } from '../course.dto';
+
 export class TopologicalSort {
-  courses = {
-    userId: '30ecc27b-9df7-4dd3-b52f-d001e79bd035',
-    courses: [
-      {
-        desiredCourse: 'PortfolioConstruction',
-        requiredCourse: 'PortfolioTheories',
-      },
-      {
-        desiredCourse: 'InvestmentManagement',
-        requiredCourse: 'Investment',
-      },
-      {
-        desiredCourse: 'Investment',
-        requiredCourse: 'Finance',
-      },
-      {
-        desiredCourse: 'PortfolioTheories',
-        requiredCourse: 'Investment',
-      },
-      {
-        desiredCourse: 'InvestmentStyle',
-        requiredCourse: 'InvestmentManagement',
-      },
-    ],
-  };
+  courses: CourseDto[] = [];
+
+  constructor(courses: CourseDto[]) {
+    this.courses = courses;
+  }
+
   nodes = new Map<string, { edges: Set<string>; visited?: boolean }>();
-  orderNodes: Record<string, number> = {};
   orderedNodes = [];
 
   createEdgeRelation() {
-    for (const node of this.courses.courses) {
+    for (const node of this.courses) {
       const requiredNode = this.nodes.get(node.requiredCourse);
       if (requiredNode) {
         this.nodes.set(node.requiredCourse, {
@@ -59,7 +41,6 @@ export class TopologicalSort {
         position = this.setNodePosition(this.nodes.get(edge), position, edge);
       }
     }
-    this.orderNodes[nodeName] = position;
     this.orderedNodes.unshift(nodeName);
     return position - 1;
   }
@@ -69,7 +50,6 @@ export class TopologicalSort {
       if (nodeValue.edges.size === 0) {
         nodeValue.visited = true;
         this.orderedNodes.unshift(nodeName);
-        this.orderNodes[nodeName] = position;
         position = position - 1;
       }
     }

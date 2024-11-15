@@ -14,16 +14,17 @@ datasource db {
 }
 
 
-model User {
+model Schedule {
   id    Int     @default(autoincrement()) @id
-  email String  @unique
-  name  String?
-  posts StudySchedule[]
+  name  String
+  course Course[]
+  userId String
 }
 
-model StudySchedule {
-  id        Int      @default(autoincrement()) @id
-  title     String
-  author    User?    @relation(fields: [userId], references: [id])
-  userId    Int?
+model Course {
+  id           Int      @default(autoincrement()) @id
+  title        String
+  order        Int
+  schedule     Schedule?    @relation(fields: [scheduleId], references: [id])
+  scheduleId   Int
 }

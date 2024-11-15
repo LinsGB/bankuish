@@ -42,6 +42,7 @@ To run the `micro-service-node`, follow these steps:
 
 ```bash
 docker-compose up --build
+CHANG THE ENT TO ACCES THE DB OUTSIDE THE CONTAINER
 RUN THE MIGRATIONS: npm run migration
 ACCESS the swagger at http://localhost:3000/api
 ```

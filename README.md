@@ -1,6 +1,6 @@
 # Tec-Test
 
-> In the project, NestJS, Prisma, Postgres, Docker, and Firebase were used.
+> In the project I use, NestJS, Prisma, Postgres, Docker, and Firebase.
 
 ### What I accomplished and what I intended to do if I had more time.
 

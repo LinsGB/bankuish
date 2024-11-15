@@ -22,7 +22,6 @@ export class CourseController {
   @UseGuards(AuthGuard)
   async getCourse(@Request() req) {
     const userId = await this.userService.getUserId(req);
-    console.log('userId =>', userId);
     return this.service.getStudySchedule(userId);
   }
 

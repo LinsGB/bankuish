@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TopologicalSort } from './utils/toplogicalSort';
 import { CreateScheduleDto } from './course.dto';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../prisma.service';
 import { Schedule } from '@prisma/client';
 
 @Injectable()

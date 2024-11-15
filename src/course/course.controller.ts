@@ -6,10 +6,10 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from 'src/guard/auth.guard';
 import { CreateScheduleDto } from './course.dto';
+import { UserService } from '../user/user.service';
+import { AuthGuard } from '../guard/auth.guard';
 import { CourseService } from './course.service';
-import { UserService } from 'src/user/user.service';
 
 @Controller('course')
 export class CourseController {
@@ -21,8 +21,8 @@ export class CourseController {
   @Get('/')
   @UseGuards(AuthGuard)
   async getCourse(@Request() req) {
-    const userId = await this.userService.getUserId(req)
-    console.log('userId =>', userId)
+    const userId = await this.userService.getUserId(req);
+    console.log('userId =>', userId);
     return this.service.getStudySchedule(userId);
   }
 
